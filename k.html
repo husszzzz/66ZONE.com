@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>بوابة الدخول الآمنة</title>
+
+    <!-- خط Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome للأيقونات -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 50% 35%,
+                    #193d78 0%,
+                    #0d2b5b 45%,
+                    #061a38 100%
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+        }
+
+        /* الصندوق الرئيسي */
+        .container {
+            width: 86%;
+            max-width: 480px;
+
+            padding: 42px 32px;
+
+            border-radius: 42px;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            border: 1px solid rgba(255, 255, 255, 0.16);
+
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.30),
+                inset 0 1px 1px rgba(255, 255, 255, 0.05);
+
+            text-align: center;
+        }
+
+        /* مربع الأيقونة */
+        .icon-box {
+            width: 125px;
+            height: 125px;
+
+            margin: 0 auto 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 35px;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            border: 1px solid rgba(255, 255, 255, 0.13);
+
+            box-shadow:
+                inset 0 1px 10px rgba(255,255,255,0.04),
+                0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        /* أيقونة الكرة الأرضية */
+        .globe {
+            font-size: 66px;
+            color: #08b9ff;
+
+            filter:
+                drop-shadow(0 0 8px rgba(0, 185, 255, 0.35));
+        }
+
+        /* العنوان */
+        h1 {
+            font-size: 31px;
+            font-weight: 800;
+
+            margin-bottom: 12px;
+        }
+
+        /* الوصف */
+        .subtitle {
+            font-size: 18px;
+            font-weight: 400;
+
+            color: rgba(255, 255, 255, 0.78);
+
+            margin-bottom: 28px;
+        }
+
+        /* الأزرار */
+        .telegram-btn,
+        .login-btn {
+            width: 100%;
+            height: 68px;
+
+            border: none;
+            border-radius: 23px;
+
+            color: white;
+
+            font-size: 19px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        /* زر التليگرام */
+        .telegram-btn {
+            background:
+                linear-gradient(
+                    135deg,
+                    #10ace7,
+                    #279bd5
+                );
+
+            margin-bottom: 18px;
+
+            box-shadow:
+                0 10px 25px rgba(0, 170, 240, 0.20);
+        }
+
+        /* حقل الكود */
+        .code-input {
+            width: 100%;
+            height: 78px;
+
+            border: none;
+            outline: none;
+
+            border-radius: 23px;
+
+            background: rgba(255, 255, 255, 0.10);
+
+            border: 1px solid rgba(255,255,255,0.03);
+
+            color: white;
+
+            text-align: center;
+
+            direction: ltr;
+
+            font-size: 25px;
+            font-weight: 700;
+
+            letter-spacing: 12px;
+
+            margin-bottom: 18px;
+        }
+
+        .code-input::placeholder {
+            color: #b8c6db;
+
+            letter-spacing: 10px;
+        }
+
+        /* زر الدخول */
+        .login-btn {
+            background:
+                linear-gradient(
+                    135deg,
+                    #12b8f3,
+                    #29afe4
+                );
+
+            box-shadow:
+                0 10px 25px rgba(0, 170, 240, 0.20);
+        }
+
+        /* الأيقونات داخل الأزرار */
+        .telegram-btn i,
+        .login-btn i {
+            margin-left: 8px;
+            font-size: 20px;
+        }
+
+        /* تأثير الضغط */
+        .telegram-btn:active,
+        .login-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* رسالة الخطأ */
+        .error {
+            display: none;
+
+            color: #ff7777;
+
+            font-size: 15px;
+
+            margin-top: 14px;
+        }
+
+        /* للموبايل */
+        @media (max-width: 500px) {
+
+            .container {
+                width: 88%;
+
+                padding: 35px 25px;
+
+                border-radius: 35px;
+            }
+
+            .icon-box {
+                width: 110px;
+                height: 110px;
+
+                margin-bottom: 28px;
+
+                border-radius: 30px;
+            }
+
+            .globe {
+                font-size: 58px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .telegram-btn,
+            .login-btn {
+                height: 62px;
+
+                font-size: 17px;
+
+                border-radius: 20px;
+            }
+
+            .telegram-btn i,
+            .login-btn i {
+                font-size: 18px;
+            }
+
+            .code-input {
+                height: 70px;
+
+                font-size: 23px;
+
+                border-radius: 20px;
+
+                letter-spacing: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- أيقونة الكرة الأرضية -->
+        <div class="icon-box">
+            <i class="fa-solid fa-globe globe"></i>
+        </div>
+
+        <!-- العنوان -->
+        <h1>
+            بوابة الدخول الآمنة
+        </h1>
+
+        <!-- الوصف -->
+        <div class="subtitle">
+            أدخل كود الدخول المكون من 4 أرقام
+        </div>
+
+        <!-- الحصول على الكود -->
+        <button class="telegram-btn" onclick="getCode()">
+            <i class="fa-brands fa-telegram"></i>
+            الحصول على كود الدخول
+        </button>
+
+        <!-- إدخال الكود -->
+        <input
+            id="code"
+            class="code-input"
+            type="tel"
+            inputmode="numeric"
+            maxlength="4"
+            placeholder="••••"
+            autocomplete="off"
+        >
+
+        <!-- تسجيل الدخول -->
+        <button class="login-btn" onclick="login()">
+            <i class="fa-solid fa-lock"></i>
+            دخول
+        </button>
+
+        <!-- الخطأ -->
+        <div id="error" class="error">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            كود الدخول غير صحيح
+        </div>
+
+    </div>
+
+    <script>
+
+        // التحقق من الكود
+        function login() {
+
+            const code = document.getElementById("code").value;
+            const error = document.getElementById("error");
+
+            // الكود الصحيح
+            if (code === "6611") {
+
+                // فتح الموقع
+                window.location.href = "https://zone66am-commits.github.io/66-ZONE-TV";
+
+            } else {
+
+                // إظهار رسالة الخطأ
+                error.style.display = "block";
+
+                setTimeout(() => {
+                    error.style.display = "none";
+                }, 2000);
+            }
+        }
+
+        // زر الحصول على الكود
+        function getCode() {
+
+            window.open(
+                "https://t.me/C9_9P",
+                "_blank"
+            );
+
+        }
+
+        // الدخول عند الضغط على Enter
+        document
+            .getElementById("code")
+            .addEventListener("keydown", function(e) {
+
+                if (e.key === "Enter") {
+                    login();
+                }
+
+            });
+
+    </script>
+
+</body>
+</html>
